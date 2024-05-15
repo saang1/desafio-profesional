@@ -1,0 +1,38 @@
+.products p{
+  display: flex;
+  justify-content: center;
+  font-size: 60px;
+  color: black;
+}
+
+.product-container{
+  display: flex;
+  align-items: center;
+}
+
+.info-product{
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.info-product p{
+  font-size: 70px;
+  font-weight: bold;
+}
+
+.info-product li{
+  font-size: 20px;
+  font-weight: 300;
+}
+
+
+
+
+
+
+
+.images img{
+  width: 980px;
+  height: 720px;
+}
