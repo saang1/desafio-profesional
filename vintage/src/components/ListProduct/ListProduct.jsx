@@ -26,18 +26,7 @@ const ListProduct = () => {
     <div className='container'>
 
       <h2 className='text-center'>Inventory</h2>
-      <div className='p-2'>
-        <a className='h2' href="/categories">List Categories</a>
-      </div>
-      <div className='p-2'>
-        <a className='h2' href="/categories/new">Create Categories</a>
-      </div>
-      <div className='p-2'>
-        <a className='h2' href="/products/">List Products</a>
-      </div>
-      <div className='p-2'>
-        <a className='h2' href="/products/new">Create Products</a>
-      </div>
+      
       <button className='btn btn-primary mb-2' onClick={addNewProduct}>Add Product</button>
       <table className='table table-striped table-bordered'>
         <thead>
@@ -57,7 +46,9 @@ const ListProduct = () => {
                 <td>{product.name}</td>
                 <td>{product.description}</td>
                 <td>
-                  <img src={product.imageUrl} alt={product.name} style={{ maxWidth: '100px' }} />
+                {product.image && (
+                  <img src={`data:image/png;base64,${product.image}`} alt={product.name} style={{ maxWidth: '100px' }} />
+                )}
                 </td>
                 <td>{product.price}</td>
               </tr>)
