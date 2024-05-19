@@ -8,12 +8,11 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 
-
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 @Table(name = "products")
 public class Product {
 
@@ -21,13 +20,8 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
     private String name;
-
-    @Column(columnDefinition = "TEXT")
     private String description;
-
-    @Column(name = "price")
     private BigDecimal price;
 
 

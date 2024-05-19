@@ -8,7 +8,7 @@ import {
 import './index.css'
 import AdministratorPage from './pages/AdministratorPage.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Product from './components/Product/Product.jsx';
+import Product from './components/Product.jsx';
 
 const router = createBrowserRouter([
   {

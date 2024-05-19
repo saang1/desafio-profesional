@@ -10,11 +10,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
-
 
 @Service
 @AllArgsConstructor
@@ -49,15 +47,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void deleteProduct(Long productId) {
-
         Product product = productRepository.findById(productId).orElseThrow(
                 () -> new ResourceNotFoundException("Product does not exists with given id: " + productId)
         );
-
         productRepository.deleteById(productId);
-
     }
-
-
 }
-

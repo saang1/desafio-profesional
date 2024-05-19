@@ -1,0 +1,37 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.nav_ul li{
+  padding: 0 0.5rem;
+}
+.nav_ul li a{
+  font-size: 1.1rem;
+  color: #000;
+  font-weight: 500;
+}
+.btn1{
+  border: 0;
+  padding: 0.5rem 1.5rem;
+  color: #CC0000;
+  background-color: rgb(249, 249, 249);
+  font-weight: 500;
+  border-radius: 10%;
+
+}
+.btn2{
+  border: 0;
+  padding: 0.5rem 1.5rem;
+  color: #ffffff;
+  background-color: #000;
+  font-weight: 500;
+  border-radius: 10%;
+}
+.btn3{
+  border: 0;
+  padding: 0.5rem 1.5rem;
+  color: #ffffff;
+  background-color: #000;
+  font-weight: 500;
+  border-radius: 10%;
+}

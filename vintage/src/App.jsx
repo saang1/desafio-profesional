@@ -1,5 +1,5 @@
 import './App.css'
-import Nav from './components/Nav/Navbar'
+import Nav from './components/Navbar.jsx'
 import Home from './components/Home/Home.jsx'
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <Nav/>
-      <Home/>
+      {/* <Home/> */}
     </>
   )
 }

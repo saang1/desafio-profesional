@@ -1,4 +1,4 @@
-import ListProduct from "../components/ListProduct/ListProduct"
+import ListProduct from "../components/ListProduct"
 
 const AdministratorPage = () => {
   return (

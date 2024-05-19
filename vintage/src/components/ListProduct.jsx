@@ -1,5 +1,4 @@
-import { ListProducts } from '../../services/ProductService'
-import './ListProduct.css'
+import { ListProducts } from '../services/ProductService'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 

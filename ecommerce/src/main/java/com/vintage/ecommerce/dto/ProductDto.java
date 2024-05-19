@@ -18,6 +18,4 @@ public class ProductDto {
     private String description;
     private BigDecimal price;
     private byte[] image;
-
-
 }

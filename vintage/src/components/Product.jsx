@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { createProduct } from '../../services/ProductService';
+import { createProduct } from '../services/ProductService';
 import { useNavigate } from 'react-router-dom';
 
 const Product = () => {
