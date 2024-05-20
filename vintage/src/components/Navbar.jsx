@@ -6,8 +6,8 @@ import logo from "../components/assets/Vintage.png";
 const Nav = () => {
   return (
     <>
-      <nav className="navbar sticky-top navbar-expand-lg navbar-light bg-light">
-        <div className="container">
+      <nav className="navbar sticky-top navbar-expand-lg navbar-light bg-light bg-body-tertiary">
+        <div className="container ">
           <a className="navbar-brand" href="/">
             <img
               src={logo}
@@ -43,11 +43,6 @@ const Nav = () => {
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#">
-                  Contact Us
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
                   Categories
                 </a>
               </li>
@@ -64,9 +59,9 @@ const Nav = () => {
                   Search
                 </button>
               </form>
-            <div>
-              <button className="btn1 mx-2 ms-5" type="submit">Log in</button>
-              <button className="btn2 mx-" type="submit">Sign up</button>
+            <div className="d-flex">
+              <button className="btn1 ms-5" type="submit">Log in</button>
+              <button className="btn2 ms-2" type="submit">Sign up</button>
             </div>    
           </div>
           {/* end */}
