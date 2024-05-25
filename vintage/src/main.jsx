@@ -8,7 +8,7 @@ import {
 import './index.css'
 import AdministratorPage from './pages/AdministratorPage.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Product from './components/Product.jsx';
+import NewProduct from './components/NewProduct.jsx';
 
 const router = createBrowserRouter([
   {
@@ -20,8 +20,8 @@ const router = createBrowserRouter([
     element: <AdministratorPage/>,
   },
   {
-    path: "add-product",
-    element: <Product/>,
+    path: "new-product",
+    element: <NewProduct/>,
   },
 ]);
 

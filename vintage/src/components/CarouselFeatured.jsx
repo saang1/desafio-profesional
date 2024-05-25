@@ -10,7 +10,7 @@ import video_featured from '../components/assets/video-featured.jpg'
 
 const CarouselFeatured = () => {
   return (
-    <Carousel fade interval={3000}>
+    <Carousel interval={4000}>
       <Carousel.Item>
         <img
             className='d-block '
@@ -18,8 +18,8 @@ const CarouselFeatured = () => {
             alt="Camera Kodak" 
         />
         <Carousel.Caption>
-          <h3>Our Featured Products</h3>
-          <p>Brief description of product i guess</p>
+          
+          <p>Kodak Instamatic 133</p>
           <button>Explore More</button>
         </Carousel.Caption>
       </Carousel.Item>
@@ -30,8 +30,8 @@ const CarouselFeatured = () => {
             alt="Camera Kodak" 
         />
         <Carousel.Caption>
-          <h3>Our Featured Products</h3>
-          <p>Brief description of product i guess</p>
+          
+          <p>Fotasy Lens ANAF Sony Minolta</p>
           <button>Explore More</button>
         </Carousel.Caption>
       </Carousel.Item>
@@ -42,8 +42,8 @@ const CarouselFeatured = () => {
             alt="Camera Kodak" 
         />
         <Carousel.Caption>
-          <h3>Our Featured Products</h3>
-          <p>Brief description of product i guess</p>
+          
+          <p>RED Epic Dragon</p>
           <button>Explore More</button>
         </Carousel.Caption>
       </Carousel.Item>

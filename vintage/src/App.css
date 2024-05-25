@@ -2,38 +2,45 @@
   margin: 0;
   padding: 0;
 }
-.nav_ul li{
-  padding: 0 0.5rem;
+
+/* Mobile  */
+
+@media (max-width: 770px) {
+  .categories-grid .left-column,
+  .categories-grid .right-column {
+    width: 100%; 
+    margin-bottom: 20px; 
+  }
+
+  .categories-grid .right-column {
+    order: -1; 
+  }
 }
-.nav_ul li a{
+
+
+/* NavBar */
+
+.d-flex button{
+  border: 0;
+  padding: 0.5rem 1.3rem;
+  color: #ffffff;
+  background-color: #000000;
+  font-weight: 500;
+  border-radius: 10%;
+  margin-left: 35px;
+  white-space: nowrap; 
+}
+
+.navbar{
   font-size: 1.1rem;
   color: #000;
   font-weight: 500;
 }
-.btn1{
-  border: 0;
-  padding: 0.5rem 1.3rem;
-  color: #ffffff;
-  background-color: #000;
-  font-weight: 500;
-  border-radius: 10%;
-}
-.btn2{
-  border: 0;
-  padding: 0.5rem 1.3rem;
-  color: #ffffff;
-  background-color: #000;
-  font-weight: 500;
-  border-radius: 10%;
-}
-.btn3{
-  border: 0;
-  padding: 0.5rem 1.3rem;
-  color: #ffffff;
-  background-color: #000;
-  font-weight: 500;
-  border-radius: 10%;
-}
+
+
+
+
+/* Carousel  */
 
 .carousel-item{
   width: 100%;
@@ -47,10 +54,23 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  opacity: 1;
 }
 
-.carousel-item h3{
-  color: #CC0000;
+/* featured styles maybe add in future idk for now doesnt looks good */
+/* .carousel-item h3{
+  font-size: 60px;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: #000000;
+  padding-bottom: 140px;
+} */
+
+.carousel-item p{
+  font-size: 40px;
+  font-weight: bold;
+  color: #ffffff;
+  padding-bottom: 50px;
 }
 
 .carousel-item button{
@@ -60,4 +80,146 @@
   background-color: #000;
   font-weight: 500;
   border-radius: 5%;
+}
+
+
+
+/* Categories */
+
+.categories-grid {
+  margin-top: 20px;
+  padding-bottom: 40px;
+}
+
+.categories-grid .img-fluid {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.categories-grid .left-column .img-fluid {
+  margin-left: 20px;
+}
+
+.categories-grid .right-column .img-fluid {
+  height: 100%;
+  margin-right: 20px;
+}
+
+.categories-grid h2{
+  color: #000;
+  font-weight: bold;
+  padding: 5px;
+}
+
+.categories-grid h3{
+  margin-top: 30px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.categories-grid button{
+  border: 0;
+  padding: 0.5rem 1.3rem;
+  color: #ffffff;
+  background-color: #CC0000;
+  font-weight: 500;
+  border-radius: 10%;
+  margin-left: 35px;
+  white-space: nowrap; 
+}
+
+.image-wrapper {
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+
+/* Card */
+
+.card {
+  width: 28rem;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15); /* Add shadow to the image */
+  transition: transform 0.3s ease; /* Add transition for smooth scaling */
+
+}
+
+.card:hover {
+  transform: scale(1.03); /* Scale up the card when hovered over */
+}
+
+.card img {
+  padding: 20px;
+  background-color: #F8F8F8;
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+}
+
+
+.card-body{
+  background-color: #F8F8F8;
+  height: 200px;
+}
+
+.card h3{
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.card p{
+  font-weight: 380;
+  font-size: 20px;
+}
+
+.card button{
+  width: 100%;
+  border-radius: 0;
+  background-color: #CC0000;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+  font-size: 15px;
+  border-color: #F8F8F8;
+  height: 53px;
+  margin: 0; 
+}
+
+.card .button-group .btn:hover {
+  background-color: #F8F8F8;
+  color: #CC0000;
+  border-color: #CC0000;
+  border-color: #CC0000;
+  border-width: 1px;
+  border-style: solid;
+}
+
+
+/* new product admin panel */
+
+.form-container {
+  background-color: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-header {
+  background-color: #f0f0f0;
+  padding: 10px 20px;
+}
+
+.form-title {
+  text-align: center;
+}
+
+.submit-btn {
+  border-radius: 15px;
 }

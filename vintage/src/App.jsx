@@ -1,15 +1,19 @@
 import './App.css'
-import Nav from './components/Navbar.jsx'
+import Navbar from './components/Navbar.jsx'
 import CarouselFeatured from './components/CarouselFeatured.jsx'
-import Home from './components/Home/Home.jsx'
+import Categories from './components/Categories.jsx'
+import ProductList from './components/ProductList.jsx'
+
 
 function App() {
 
   return (
     <>
-      <Nav/>
+
+      <ProductList/>
+      {/* <Navbar/>
       <CarouselFeatured/>
-      {/* <Home/> */}
+      <Categories/>  */}
     </>
   )
 }

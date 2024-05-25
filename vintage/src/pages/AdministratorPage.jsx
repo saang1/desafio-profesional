@@ -1,9 +1,9 @@
-import ListProduct from "../components/ListProduct"
+import AdminListProduct from "../components/AdminListProduct"
 
 const AdministratorPage = () => {
   return (
     <>
-      <ListProduct/>
+      <AdminListProduct/>
     </>
   )
 }

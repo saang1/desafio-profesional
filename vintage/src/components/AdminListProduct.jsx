@@ -2,7 +2,7 @@ import { ListProducts } from '../services/ProductService'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const ListProduct = () => {
+const AdminListProduct = () => {
 
   const [products, setProducts] = useState([])
 
@@ -18,7 +18,7 @@ const ListProduct = () => {
   }, [])
 
   function addNewProduct(){
-    navigator('/add-product')
+    navigator('/new-product')
   }
 
   return (
@@ -61,4 +61,4 @@ const ListProduct = () => {
   )
 }
 
-export default ListProduct
+export default AdminListProduct

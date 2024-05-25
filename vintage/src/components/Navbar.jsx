@@ -1,74 +1,65 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
-import {  } from "react-router-dom";
+import { Navbar, Container, Nav, Form, Button, Offcanvas } from "react-bootstrap";
 import logo from "../components/assets/Vintage.png";
 
-const Nav = () => {
-  return (
-    <>
-      <nav className="navbar sticky-top navbar-expand-lg navbar-light bg-light bg-body-tertiary">
-        <div className="container ">
-          <a className="navbar-brand" href="/">
-            <img
-              src={logo}
-              height="70"
-              alt="Vintage Logo"
-              loading="lazy"
-              style={{ marginTop: "2px" }}
-            />
-          </a>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          {/* start */}
-          <div className="collapse navbar-collapse nav_ul align-items-center" id="navbarNav">
-            <ul className="navbar-nav mx-auto">
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Home
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Products
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Categories
-                </a>
-              </li>
-            </ul>
 
-            <form className="d-flex">
-                <input
-                  className="form-control me-2"
+const NavigationBar = () => {
+
+  const expand = 'lg'
+
+  return (
+    <Navbar key={expand} expand={expand} bg="light" className="bg-body-tertiary sticky-top">
+      <Container fluid>
+        <Navbar.Brand href="#" className="ps-3">
+          <img
+            src={logo}
+            height="70"
+            alt="Vintage Logo"
+            loading="lazy"
+            style={{ marginTop: "2px" }}
+          />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
+        <Navbar.Offcanvas
+          id={`offcanvasNavbar-expand-${expand}`}
+          aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+          placement="end"
+        >
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+              Menu
+            </Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body>
+            <Nav className="justify-content-center flex-grow-1 ps-5">
+              <Nav.Link href="#">Products</Nav.Link>
+              <Nav.Link  href="#categories" >Categories</Nav.Link>
+              <Form className="d-flex mx-auto">
+                <Form.Control
                   type="search"
                   placeholder="Search"
+                  className="me-2"
                   aria-label="Search"
                 />
-                <button className="btn3" type="submit">
+                <Button  className="btn-search" type="submit">
                   Search
-                </button>
-              </form>
-            <div className="d-flex">
-              <button className="btn1 ms-5" type="submit">Log in</button>
-              <button className="btn2 ms-2" type="submit">Sign up</button>
-            </div>    
-          </div>
-          {/* end */}
-        </div>
-      </nav>
-    </>
+                </Button>
+              </Form>
+              <div className="d-flex ms-auto">
+                <Button className="btn-login me-2" type="button">
+                  Log in
+                </Button>
+                <Button className="btn-signup" type="button">
+                  Sign up
+                </Button>
+              </div>
+            </Nav>
+          </Offcanvas.Body>
+        </Navbar.Offcanvas>
+      </Container>
+    </Navbar>
   );
 };
 
-export default Nav;
+export default NavigationBar;
