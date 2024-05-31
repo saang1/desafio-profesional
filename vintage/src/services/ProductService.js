@@ -15,3 +15,9 @@ export const createProduct = (product, file) => {
     },
   });
 };
+
+export const getProductById = (id) => {
+  return ListProducts().then(response => {
+    return response.data.find(product => product.id === parseInt(id));
+  });
+};

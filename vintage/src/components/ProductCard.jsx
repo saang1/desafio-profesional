@@ -2,8 +2,15 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 import { Card, Button, ButtonGroup } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 const ProductCard = ({ product }) => {
+  const navigate = useNavigate();
+
+  const handleDetailsClick = () => {
+    navigate(`/products/${product.id}`);
+  };
+
   return (
     <Card className="mb-4 mx-2 mt-4 border-0" key={product.id}>
       {product.image && (
@@ -27,8 +34,8 @@ const ProductCard = ({ product }) => {
         </Card.Text>
       </Card.Body>
       <ButtonGroup size="lg" className='button-group'>
-          <Button variant="danger">ADD TO CART</Button>
-          <Button variant="danger">DETAILS</Button>
+        <Button variant="danger">ADD TO CART</Button>
+        <Button variant="danger" onClick={handleDetailsClick}>DETAILS</Button>
       </ButtonGroup>
     </Card>
   );

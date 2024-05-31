@@ -1,11 +1,35 @@
-import AdminListProduct from "../components/AdminListProduct"
+// eslint-disable-next-line no-unused-vars
+import React from 'react';
+import { Container, Row, Col, Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+
 
 const AdministratorPage = () => {
+  const navigate = useNavigate();
+
   return (
     <>
-      <AdminListProduct/>
+      <h1 className="text-center mt-5">Administrator</h1>
+      <Container className="d-flex flex-column justify-content-center align-items-center vh-100">
+        <Row className="w-100">
+          <Col className="d-flex justify-content-center">
+            <Button
+              className="big-button"
+              variant="primary"
+              onClick={() => navigate('/admin-list-product')}
+            >
+              List Products
+            </Button>
+          </Col>
+          <Col className="d-flex justify-content-center">
+            <Button className="big-button" variant="secondary">
+              Button 2
+            </Button>
+          </Col>
+        </Row>
+      </Container>
     </>
-  )
-}
+  );
+};
 
-export default AdministratorPage
+export default AdministratorPage;

@@ -10,7 +10,7 @@ const Categories = () => {
   return (
       <Container className="categories-grid" id="categories">
         <Row className="justify-content-center">
-          <h2 className="text-center mb-4">CATEGORIES</h2>
+          <h2 className="text-center mb-3 mt-5">CATEGORIES</h2>
         </Row>
         <Row className="justify-content-center align-items-stretch"> 
           <Col md={6} className="left-column d-flex flex-column justify-content-center">

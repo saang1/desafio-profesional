@@ -11,7 +11,7 @@ const NavigationBar = () => {
   return (
     <Navbar key={expand} expand={expand} bg="light" className="bg-body-tertiary sticky-top">
       <Container fluid>
-        <Navbar.Brand href="#" className="ps-3">
+        <Navbar.Brand href="/" className="ps-3">
           <img
             src={logo}
             height="70"
@@ -33,7 +33,7 @@ const NavigationBar = () => {
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Nav className="justify-content-center flex-grow-1 ps-5">
-              <Nav.Link href="#">Products</Nav.Link>
+              <Nav.Link href="#products">Products</Nav.Link>
               <Nav.Link  href="#categories" >Categories</Nav.Link>
               <Form className="d-flex mx-auto">
                 <Form.Control
@@ -42,15 +42,15 @@ const NavigationBar = () => {
                   className="me-2"
                   aria-label="Search"
                 />
-                <Button  className="btn-search" type="submit">
+                <Button  className="btn-nav" type="submit">
                   Search
                 </Button>
               </Form>
               <div className="d-flex ms-auto">
-                <Button className="btn-login me-2" type="button">
+                <Button className="btn-nav me-2" type="button">
                   Log in
                 </Button>
-                <Button className="btn-signup" type="button">
+                <Button className="btn-nav" type="button">
                   Sign up
                 </Button>
               </div>
