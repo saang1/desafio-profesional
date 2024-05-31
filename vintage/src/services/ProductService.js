@@ -21,3 +21,6 @@ export const getProductById = (id) => {
     return response.data.find(product => product.id === parseInt(id));
   });
 };
+
+
+export const deleteProduct = (productId) => axios.delete(REST_API_BASE_URL + '/' + productId);

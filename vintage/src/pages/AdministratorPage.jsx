@@ -9,25 +9,30 @@ const AdministratorPage = () => {
 
   return (
     <>
-      <h1 className="text-center mt-5">Administrator</h1>
-      <Container className="d-flex flex-column justify-content-center align-items-center vh-100">
-        <Row className="w-100">
-          <Col className="d-flex justify-content-center">
-            <Button
-              className="big-button"
-              variant="primary"
-              onClick={() => navigate('/admin-list-product')}
-            >
-              List Products
-            </Button>
-          </Col>
-          <Col className="d-flex justify-content-center">
-            <Button className="big-button" variant="secondary">
-              Button 2
-            </Button>
-          </Col>
-        </Row>
-      </Container>
+      <div className="admin-content">
+        <h1 className="text-center mt-5">Administrator</h1>
+        <Container className="d-flex flex-column justify-content-center align-items-center vh-100">
+          <Row className="w-100">
+            <Col className="d-flex justify-content-center">
+              <Button
+                className="big-button"
+                variant="primary"
+                onClick={() => navigate('/admin-list-product')}
+              >
+                List Products
+              </Button>
+            </Col>
+            <Col className="d-flex justify-content-center">
+              <Button className="big-button" variant="secondary">
+                Button 2
+              </Button>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+      <div className="mobile-message">
+        <p>This page is not available on mobile devices.</p>
+      </div>
     </>
   );
 };

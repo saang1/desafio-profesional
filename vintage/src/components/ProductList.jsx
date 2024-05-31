@@ -72,7 +72,7 @@ const ProductList = () => {
             >
               {index + 1}
             </Pagination.Item>
-          )).slice(0, 5)} {/* Display only first 5 page buttons */}
+          )).slice(0, 5)}
           <Pagination.Next onClick={() => paginate(currentPage + 1)} disabled={currentPage === totalPages} />
           <Pagination.Last onClick={() => paginate(totalPages)} disabled={currentPage === totalPages} />
         </Pagination>

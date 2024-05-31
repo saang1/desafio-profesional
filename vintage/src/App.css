@@ -19,6 +19,32 @@ html {
   }
 }
 
+/* Admin mobile  */
+/* Hide the main content on small screens */
+@media (max-width: 768px) {
+  .admin-content {
+    display: none;
+  }
+  .mobile-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background-color: #f8d7da;
+    color: #721c24;
+    font-size: 1.5rem;
+    padding: 20px;
+  }
+}
+
+/* Show the main content on larger screens */
+@media (min-width: 769px) {
+  .mobile-message {
+    display: none;
+  }
+}
+
 
 /* NavBar */
 
@@ -243,10 +269,16 @@ html {
   border-radius: 15px;
 }
 
+.new-product{
+  height: 569px;
+}
+
 
 /* Admin panel */
 
-
+.table .btn {
+  margin-right: 5px;
+}
 
 /* Product Details */
 
@@ -278,8 +310,8 @@ html {
 }
 
 .img-thumbnail:hover {
-  transform: scale(1.05); /* Zoom effect */
-  border: 2px solid black; /* Black border */
+  transform: scale(1.05); 
+  border: 2px solid black;
 }
 
 .btn-cart{
@@ -312,6 +344,7 @@ html {
   color: #333;
   bottom: 0;
   width: 100%;
+
 }
 
 .footer-logo {
@@ -330,17 +363,17 @@ html {
 /* Pagination buttons */
 
 .pagination-dark .page-item .page-link {
-  background-color: #343a40; /* Dark background color */
-  color: white; /* Text color */
+  background-color: #343a40; 
+  color: white; 
 }
 
 .pagination-dark .page-item.active .page-link {
-  background-color: #495057; /* Slightly lighter dark background for active item */
-  border-color: #495057; /* Matching border color for active item */
+  background-color: #495057; 
+  border-color: #495057; 
 }
 
 .pagination-dark .page-item .page-link:hover {
-  background-color: #495057; /* Hover effect */
-  color: white; /* Hover text color */
+  background-color: #495057; 
+  color: white; 
 }
 

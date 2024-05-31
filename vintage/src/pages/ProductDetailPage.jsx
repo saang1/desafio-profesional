@@ -16,7 +16,7 @@ const ProductDetail = () => {
     getProductById(id)
       .then((product) => {
         setProduct(product);
-        setCurrentImage(product.image); // Default to the main image
+        setCurrentImage(product.image); 
       })
       .catch((error) => {
         console.error('Error fetching product details:', error);

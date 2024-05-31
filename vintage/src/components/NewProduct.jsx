@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { createProduct } from '../services/ProductService';
 import { useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { ArrowLeft } from 'react-bootstrap-icons';
+
 
 
 const NewProduct = () => {
@@ -15,7 +17,7 @@ const NewProduct = () => {
     price:'',
     image:''
   });
-  const navigator = useNavigate();
+  const navigate = useNavigate();
 
   function saveProduct(e) {
     e.preventDefault();
@@ -30,7 +32,7 @@ const NewProduct = () => {
       createProduct(productData, image) 
         .then((response) => {
           console.log('Product created successfully:', response.data);
-          navigator('/administrator');
+          navigate('/admin-list-product');
         })
         .catch((error) => {
           console.error('Error creating product:', error);
@@ -70,8 +72,20 @@ const NewProduct = () => {
     return valid;
   }
 
+  const handleBackClick = () => {
+    navigate('/admin-list-product');
+  };
+
+
   return (
-    <Container className="container mt-5">
+    <Container className="new-product mt-5 mb-5 ">
+            <Row className="mb-4">
+        <Col>
+          <Button variant="outline-dark" onClick={handleBackClick} className="text-decoration-none">
+            <ArrowLeft size={50} />
+          </Button>
+        </Col>
+      </Row>
       <Row className="justify-content-center">
         <Col md={8}>
           <div className="form-container">

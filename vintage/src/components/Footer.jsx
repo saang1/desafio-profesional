@@ -6,7 +6,7 @@ import logo from "../components/assets/Vintage.png";
 const Footer = () => {
   return (
     <div className="footer">
-      <Container fluid>
+      <Container fluid >
         <Row>
           <Col xs={12} md={6} className="d-flex align-items-center">
             <img src={logo} alt="Vintage Logo" className="footer-logo" />
