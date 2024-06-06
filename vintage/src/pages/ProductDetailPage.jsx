@@ -5,18 +5,21 @@ import { getProductById } from '../services/ProductService';
 import { Container, Row, Col, Image, Button, Modal, Carousel } from 'react-bootstrap';
 import { ArrowLeft } from 'react-bootstrap-icons';
 
+
 const ProductDetail = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [currentImage, setCurrentImage] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0); 
   const navigate = useNavigate();
 
   useEffect(() => {
     getProductById(id)
       .then((product) => {
         setProduct(product);
-        setCurrentImage(product.image); 
+        if (product.images && product.images.length > 0) {
+          setCurrentIndex(0);
+        }
       })
       .catch((error) => {
         console.error('Error fetching product details:', error);
@@ -31,8 +34,8 @@ const ProductDetail = () => {
     navigate('/');
   };
 
-  const handleImageClick = (image) => {
-    setCurrentImage(image);
+  const handleImageClick = (index) => {
+    setCurrentIndex(index);
     setShowModal(true);
   };
 
@@ -51,27 +54,29 @@ const ProductDetail = () => {
       </Row>
       <Row>
         <Col md={6}>
-          <Image
-            src={`data:image/png;base64,${product.image}`}
-            fluid
-            className="img-detail"
-            onClick={() => handleImageClick(product.image)}
-            style={{ cursor: 'pointer' }}
-          />
+          {product.images && product.images.length > 0 && (
+            <Image
+              src={`data:image/png;base64,${product.images[0]}`}
+              fluid
+              className="img-detail"
+              onClick={() => handleImageClick(0)}
+              style={{ cursor: 'pointer', objectFit: 'cover', maxHeight: '500px', width: '100%' }}
+            />
+          )}
           <div className="mt-3 d-flex justify-content-center">
-            {[...Array(4)].map((_, index) => (
+            {product.images && product.images.map((image, index) => (
               <Image
                 key={index}
-                src={`data:image/png;base64,${product.image}`}
+                src={`data:image/png;base64,${image}`}
                 alt={`Thumbnail ${index + 1}`}
-                className="img-thumbnail mx-1"
-                style={{ width: '80px', cursor: 'pointer' }}
-                onClick={() => handleImageClick(product.image)}
+                className="img-thumbnail mx-2"
+                style={{ width: '80px', height: '80px', objectFit: 'cover', cursor: 'pointer' }}
+                onClick={() => handleImageClick(index)}
               />
             ))}
           </div>
         </Col>
-        <Col md={6} className="d-flex flex-column mb-5">
+        <Col md={6} className="d-flex flex-column mb-4">
           <div className="flex-grow-1">
             <h1>{product.name}</h1>
             <p>{product.description}</p>
@@ -82,14 +87,14 @@ const ProductDetail = () => {
           </Button>
         </Col>
       </Row>
-      <Modal show={showModal} onHide={handleCloseModal} size="xl" centered>
-        <Modal.Body>
-          <Carousel activeIndex={0}>
-            {[...Array(4)].map((_, index) => (
+      <Modal show={showModal} onHide={handleCloseModal} size="xl" centered dialogClassName="custom-modal">
+        <Modal.Body className="custom-modal-body">
+          <Carousel activeIndex={currentIndex} onSelect={(selectedIndex) => setCurrentIndex(selectedIndex)}>
+            {product.images && product.images.map((image, index) => (
               <Carousel.Item key={index}>
                 <img
                   className="d-block w-100"
-                  src={`data:image/png;base64,${currentImage}`}
+                  src={`data:image/png;base64,${image}`}
                   alt={`Slide ${index + 1}`}
                 />
               </Carousel.Item>

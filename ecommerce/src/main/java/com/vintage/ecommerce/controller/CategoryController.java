@@ -4,10 +4,9 @@ package com.vintage.ecommerce.controller;
 import com.vintage.ecommerce.dto.CategoryDto;
 import com.vintage.ecommerce.service.CategoryService;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 
 
 @CrossOrigin("*")
@@ -16,12 +15,25 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/categories")
 public class CategoryController {
 
-    private CategoryService categoryService;
+    private final CategoryService categoryService;
 
-    // Add Category
     @PostMapping
-    public ResponseEntity<CategoryDto> createCategory(@RequestBody CategoryDto categoryDto){
-        CategoryDto savedCategory = categoryService.createCategory(categoryDto);
-        return new ResponseEntity<>(savedCategory, HttpStatus.CREATED);
+    public CategoryDto createCategory(@RequestBody CategoryDto categoryDto) {
+        return categoryService.createCategory(categoryDto);
+    }
+
+    @GetMapping("/{id}")
+    public CategoryDto getCategoryById(@PathVariable Long id) {
+        return categoryService.getCategoryById(id);
+    }
+
+    @GetMapping
+    public List<CategoryDto> getAllCategories() {
+        return categoryService.getAllCategories();
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteCategory(@PathVariable Long id) {
+        categoryService.deleteCategory(id);
     }
 }

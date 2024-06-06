@@ -23,14 +23,12 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<ProductDto> createProduct(
-            @RequestPart("product") String productJson,
-            @RequestPart("file") MultipartFile file) throws IOException {
-
+            @RequestParam("product") String productJson,
+            @RequestParam("images") MultipartFile[] images) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         ProductDto productDto = objectMapper.readValue(productJson, ProductDto.class);
-
-        ProductDto savedProduct = productService.createProduct(productDto, file);
-        return new ResponseEntity<>(savedProduct, HttpStatus.CREATED);
+        ProductDto createdProduct = productService.createProduct(productDto, images);
+        return new ResponseEntity<>(createdProduct, HttpStatus.CREATED);
     }
 
     @GetMapping("{id}")

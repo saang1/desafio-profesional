@@ -8,13 +8,12 @@ import java.util.List;
 
 public interface ProductService {
 
-    ProductDto createProduct(ProductDto productDto, MultipartFile file) throws IOException;
+    ProductDto createProduct(ProductDto productDto, MultipartFile[] images) throws IOException;
 
     ProductDto getProductById(Long productId);
 
     List<ProductDto> getAllProducts();
 
     void deleteProduct(Long productId);
-
 
 }

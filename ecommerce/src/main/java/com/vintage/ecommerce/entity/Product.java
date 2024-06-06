@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Getter
@@ -24,12 +25,10 @@ public class Product {
     private String description;
     private BigDecimal price;
 
-
+    @ElementCollection
+    @CollectionTable(name = "product_images", joinColumns = @JoinColumn(name = "product_id"))
     @Lob
-    @Column(name = "image", columnDefinition = "LONGBLOB")
-    private byte[] image;
-
-
-
+    @Column(columnDefinition = "LONGBLOB")
+    private List<byte[]> images;
 
 }

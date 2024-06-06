@@ -13,10 +13,10 @@ const ProductCard = ({ product }) => {
 
   return (
     <Card className="mb-4 mx-2 mt-4 border-0" key={product.id}>
-      {product.image && (
+      {product.images && product.images.length > 0 && (
         <Card.Img
           variant="top"
-          src={`data:image/png;base64,${product.image}`}
+          src={`data:image/png;base64,${product.images[0]}`}
           alt={product.name}
           className="product-image"
         />

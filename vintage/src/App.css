@@ -283,7 +283,6 @@ html {
 /* Product Details */
 
 .img-detail{
-
   object-fit: cover;
   cursor: pointer;
 }
@@ -333,6 +332,32 @@ html {
   border-width: 1px;
   border-style: solid;
 }
+
+.custom-modal .modal-content {
+  background-color: #333; 
+  color: white; 
+}
+
+.custom-modal .modal-body {
+  padding: 0;
+}
+
+.custom-modal .carousel-indicators li {
+  background-color: #555; 
+}
+
+.custom-modal .carousel-indicators .active {
+  background-color: #000000; /* White color for the active indicator */
+}
+
+.custom-modal .carousel-control-prev-icon,
+.custom-modal .carousel-control-next-icon {
+  background-color: #000000; 
+  border-radius: 20%; 
+  padding: 30px; 
+}
+
+
 
 
 /* Footer */

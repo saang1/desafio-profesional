@@ -1,6 +1,6 @@
-import { ListProducts, deleteProduct } from '../services/ProductService'
-import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { ListProducts, deleteProduct, } from '../services/ProductService';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Table, Button, Modal } from 'react-bootstrap';
 
 const AdminListProduct = () => {
@@ -8,41 +8,47 @@ const AdminListProduct = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedProductId, setSelectedProductId] = useState(null);
 
-  const navigator = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getAllProducts();
-  }, [])
+  }, []);
+
+  const getAllProducts = () => {
+    ListProducts()
+      .then((response) => {
+        setProducts(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching products: ", error);
+      });
+  };
 
 
-  function getAllProducts(){
-    ListProducts().then((response) => {
-      setProducts(response.data);
-    }).catch(error => {
-      console.error(error);
-    })
-  }
+  const addNewProduct = () => {
+    navigate('/new-product');
+  };
 
-  function addNewProduct(){
-    navigator('/new-product')
-  }
-
-  function handleDeleteProduct(id) {
+  const handleDeleteProduct = (id) => {
     setSelectedProductId(id);
     setShowModal(true);
-  }
+  };
 
-  function confirmDeleteProduct() {
+  const confirmDeleteProduct = () => {
     deleteProduct(selectedProductId)
-      // eslint-disable-next-line no-unused-vars
-      .then((response) => {
+      .then(() => {
         getAllProducts();
         setShowModal(false);
       })
       .catch((error) => {
-        console.log(error);
+        console.log("Error deleting product: ", error);
       });
-  }
+  };
+
+  const handleEditProduct = (id) => {
+    navigate(`/edit-product/${id}`);
+  };
+
 
 
   return (
@@ -79,15 +85,17 @@ const AdminListProduct = () => {
                   <td>{product.name}</td>
                   <td>{product.description}</td>
                   <td>
-                    {product.image && (
+                    {product.images && product.images.length > 0 ? (
                       <img
-                        src={`data:image/png;base64,${product.image}`}
+                        src={`data:image/png;base64,${product.images[0]}`}
                         alt={product.name}
                         style={{ maxWidth: '100px' }}
                       />
+                    ) : (
+                      'No Image'
                     )}
                   </td>
-                  <td>{product.price}</td>
+                  <td>${product.price}</td>
                   <td>
                     <Button
                       variant="success"
@@ -100,7 +108,7 @@ const AdminListProduct = () => {
                       onClick={() => handleDeleteProduct(product.id)}
                     >
                       Delete
-                    </Button>
+                    </Button>{' '}
                   </td>
                 </tr>
               ))}
@@ -127,4 +135,4 @@ const AdminListProduct = () => {
   );
 };
 
-export default AdminListProduct
+export default AdminListProduct;

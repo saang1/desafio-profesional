@@ -1,35 +1,35 @@
-import { useState } from 'react';
+import { useState,  } from 'react';
 import { createProduct } from '../services/ProductService';
 import { useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { ArrowLeft } from 'react-bootstrap-icons';
 
-
-
 const NewProduct = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
-  const [image, setImage] = useState(null);
+  const [images, setImages] = useState([]);
   const [errors, setErrors] = useState({
-    name:'',
-    description:'',
-    price:'',
-    image:''
+    name: '',
+    description: '',
+    price: '',
+    images: ''
   });
   const navigate = useNavigate();
 
+
   function saveProduct(e) {
     e.preventDefault();
-  
-    if(validateForm()){
+
+    if (validateForm()) {
       const productData = {
         name: name,
         description: description,
-        price: price
+        price: price,
       };
-    
-      createProduct(productData, image) 
+
+
+      createProduct(productData, images) 
         .then((response) => {
           console.log('Product created successfully:', response.data);
           navigate('/admin-list-product');
@@ -40,32 +40,32 @@ const NewProduct = () => {
     }
   }
 
-  function validateForm(){
+  function validateForm() {
     let valid = true;
-    const errorsCopy = {... errors};
+    const errorsCopy = { ...errors };
 
-    if(name.trim()){
+    if (name.trim()) {
       errorsCopy.name = '';
     } else {
       errorsCopy.name = 'Name is required';
       valid = false;
     }
-    if(description.trim()){
+    if (description.trim()) {
       errorsCopy.description = '';
     } else {
       errorsCopy.description = 'Description is required';
       valid = false;
     }
-    if(price.trim()){
+    if (price.trim()) {
       errorsCopy.price = '';
     } else {
       errorsCopy.price = 'Price is required';
       valid = false;
     }
-    if(image){
-      errorsCopy.image = '';
+    if (images.length > 0) {
+      errorsCopy.images = '';
     } else {
-      errorsCopy.image = 'Image is required';
+      errorsCopy.images = 'At least one image is required';
       valid = false;
     }
     setErrors(errorsCopy);
@@ -76,10 +76,13 @@ const NewProduct = () => {
     navigate('/admin-list-product');
   };
 
+  const handleFileChange = (e) => {
+    setImages(Array.from(e.target.files));
+  };
 
   return (
     <Container className="new-product mt-5 mb-5 ">
-            <Row className="mb-4">
+      <Row className="mb-4">
         <Col>
           <Button variant="outline-dark" onClick={handleBackClick} className="text-decoration-none">
             <ArrowLeft size={50} />
@@ -102,7 +105,7 @@ const NewProduct = () => {
                       placeholder="Enter Product Name"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      isInvalid={errors.name}
+                      isInvalid={!!errors.name}
                     />
                     <Form.Control.Feedback type="invalid" className="invalid-feedback">
                       {errors.name}
@@ -118,7 +121,7 @@ const NewProduct = () => {
                       placeholder="Enter Product Description"
                       value={description}
                       onChange={(e) => setDescription(e.target.value)}
-                      isInvalid={errors.description}
+                      isInvalid={!!errors.description}
                     />
                     <Form.Control.Feedback type="invalid" className="invalid-feedback">
                       {errors.description}
@@ -136,7 +139,7 @@ const NewProduct = () => {
                       onChange={(e) => setPrice(e.target.value)}
                       step="0.01"
                       min="0"
-                      isInvalid={errors.price}
+                      isInvalid={!!errors.price}
                     />
                     <Form.Control.Feedback type="invalid" className="invalid-feedback">
                       {errors.price}
@@ -144,17 +147,18 @@ const NewProduct = () => {
                   </Col>
                 </Form.Group>
 
-                <Form.Group as={Row} className="mb-3" controlId="formProductImage">
-                  <Form.Label column sm={4} className="form-label">Image</Form.Label>
+                <Form.Group as={Row} className="mb-3" controlId="formProductImages">
+                  <Form.Label column sm={4} className="form-label">Images</Form.Label>
                   <Col sm={8}>
                     <Form.Control
                       type="file"
                       accept="image/*"
-                      onChange={(e) => setImage(e.target.files[0])}
-                      isInvalid={errors.image}
+                      onChange={handleFileChange}
+                      multiple
+                      isInvalid={!!errors.images}
                     />
                     <Form.Control.Feedback type="invalid" className="invalid-feedback">
-                      {errors.image}
+                      {errors.images}
                     </Form.Control.Feedback>
                   </Col>
                 </Form.Group>

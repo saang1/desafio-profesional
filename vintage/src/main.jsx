@@ -11,9 +11,10 @@ import AdministratorPage from './pages/AdministratorPage';
 import AdminListProduct from './components/AdminListProduct';
 import NewProduct from './components/NewProduct';
 import ProductList from './components/ProductList';
-import Categories from './components/Categories';
 import ProductDetailPage from './pages/ProductDetailPage';
 import Layout from './components/Layout';
+import Categories from './components/Categories';
+
 
 const router = createBrowserRouter([
   {

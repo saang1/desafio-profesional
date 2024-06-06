@@ -4,10 +4,12 @@ const REST_API_BASE_URL = 'http://localhost:8080/api/products';
 
 export const ListProducts = () => axios.get(REST_API_BASE_URL);
 
-export const createProduct = (product, file) => {
+export const createProduct = (product, images) => {
   const formData = new FormData();
-  formData.append('product', JSON.stringify(product)); // Convert product object to JSON string
-  formData.append('file', file);
+  formData.append('product', JSON.stringify(product)); 
+  images.forEach((image) => {
+    formData.append('images', image);
+  });
 
   return axios.post(REST_API_BASE_URL, formData, {
     headers: {
@@ -24,3 +26,4 @@ export const getProductById = (id) => {
 
 
 export const deleteProduct = (productId) => axios.delete(REST_API_BASE_URL + '/' + productId);
+
