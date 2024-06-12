@@ -69,6 +69,14 @@ const router = createBrowserRouter([
       </Layout>
     ),
   },
+  {
+    path: '/edit-product/:id',
+    element: (
+      <Layout>
+        <NewProduct />
+      </Layout>
+    ),
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

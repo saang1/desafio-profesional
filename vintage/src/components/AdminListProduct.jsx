@@ -1,4 +1,4 @@
-import { ListProducts, deleteProduct, } from '../services/ProductService';
+import { ListProducts, deleteProduct } from '../services/ProductService';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Table, Button, Modal } from 'react-bootstrap';
@@ -24,7 +24,6 @@ const AdminListProduct = () => {
       });
   };
 
-
   const addNewProduct = () => {
     navigate('/new-product');
   };
@@ -49,8 +48,6 @@ const AdminListProduct = () => {
     navigate(`/edit-product/${id}`);
   };
 
-
-
   return (
     <Container>
       <Row className="mb-4">
@@ -73,6 +70,7 @@ const AdminListProduct = () => {
                 <th>Product Id</th>
                 <th>Product Name</th>
                 <th>Product Description</th>
+                <th>Product Category</th>
                 <th>Product Image</th>
                 <th>Product Price</th>
                 <th>Actions</th>
@@ -84,6 +82,7 @@ const AdminListProduct = () => {
                   <td>{product.id}</td>
                   <td>{product.name}</td>
                   <td>{product.description}</td>
+                  <td>{product.category}</td>
                   <td>
                     {product.images && product.images.length > 0 ? (
                       <img

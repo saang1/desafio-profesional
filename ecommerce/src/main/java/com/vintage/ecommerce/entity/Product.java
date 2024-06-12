@@ -23,7 +23,9 @@ public class Product {
 
     private String name;
     private String description;
+    private String category;
     private BigDecimal price;
+
 
     @ElementCollection
     @CollectionTable(name = "product_images", joinColumns = @JoinColumn(name = "product_id"))
