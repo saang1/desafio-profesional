@@ -29,18 +29,6 @@ export const getProductById = (id) => {
 export const deleteProduct = (productId) => axios.delete(REST_API_BASE_URL + '/' + productId);
 
 
-// export const updateProduct = (id, product, images) => {
-//   const formData = new FormData();
-//   formData.append('product', new Blob([JSON.stringify(product)], { type: 'application/json' }));
-//   images.forEach((image) => {
-//     formData.append('images', image);
-//   });
-//   return axios.put(`${REST_API_BASE_URL}/${id}`, formData, {
-//     headers: {
-//       'Content-Type': 'multipart/form-data',
-//     },
-//   });
-// };
 
 export const getProduct = (productId) => axios.get(REST_API_BASE_URL + '/' + productId);
 

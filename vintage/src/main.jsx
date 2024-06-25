@@ -14,6 +14,9 @@ import ProductList from './components/ProductList';
 import ProductDetailPage from './pages/ProductDetailPage';
 import Layout from './components/Layout';
 import Categories from './components/Categories';
+import Register from './pages/RegisterPage';
+import Login from './pages/LoginPage';
+import ProfilePage from './pages/ProfilePage';
 
 
 const router = createBrowserRouter([
@@ -74,6 +77,30 @@ const router = createBrowserRouter([
     element: (
       <Layout>
         <NewProduct />
+      </Layout>
+    ),
+  },
+  {
+    path: '/register',
+    element: (
+      <Layout>
+        <Register />
+      </Layout>
+    ),
+  },
+  {
+    path: '/login',
+    element: (
+      <Layout>
+        <Login />
+      </Layout>
+    ),
+  },
+  {
+    path: '/profile',
+    element: (
+      <Layout>
+        <ProfilePage />
       </Layout>
     ),
   },

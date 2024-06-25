@@ -2,8 +2,6 @@ package com.vintage.ecommerce.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vintage.ecommerce.dto.ProductDto;
-import com.vintage.ecommerce.entity.Product;
-import com.vintage.ecommerce.exception.ResourceNotFoundException;
 import com.vintage.ecommerce.service.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

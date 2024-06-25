@@ -59,11 +59,39 @@ html {
   white-space: nowrap; 
 }
 
+.btn-nav:hover {
+  background-color: #6b6b6b;
+  color: #ffffff;
+}
+
+
+
+.btn-logout {
+  border: 0;
+  padding: 0.5rem 1.3rem;
+  color: #ffffff;
+  background-color: #000000;
+  font-weight: 500;
+  border-radius: 10%;
+  margin-left: 35px;
+  white-space: nowrap; 
+}
+
+.btn-logout:hover {
+  background-color: #F8F8F8;
+  color: #CC0000;
+  border-color: #CC0000;
+  border-color: #CC0000;
+  border-width: 1px;
+  border-style: solid;
+}
+
 .navbar{
   font-size: 1.1rem;
   color: #000;
   font-weight: 500;
 }
+
 
 
 
