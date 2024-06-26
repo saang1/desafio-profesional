@@ -28,7 +28,9 @@ public class SecurityConfig {
                                 authRequest
                                         .requestMatchers("/auth/**").permitAll()
                                         .requestMatchers("/api/products").permitAll()
-                                .anyRequest().authenticated()
+                                        .requestMatchers("/api/user/list/").hasRole("ADMIN")
+                                        .requestMatchers("/api/user/list/{id}/role").hasRole("ADMIN")
+                                        .anyRequest().authenticated()
                                 )
                         .sessionManagement(sessionManager ->
                                 sessionManager

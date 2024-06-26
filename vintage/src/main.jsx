@@ -17,6 +17,7 @@ import Categories from './components/Categories';
 import Register from './pages/RegisterPage';
 import Login from './pages/LoginPage';
 import ProfilePage from './pages/ProfilePage';
+import AdminListUsers from './components/AdminListUsers';
 
 
 const router = createBrowserRouter([
@@ -45,6 +46,14 @@ const router = createBrowserRouter([
     element: (
       <Layout>
         <AdminListProduct />
+      </Layout>
+    ),
+  },
+  {
+    path: '/users',
+    element: (
+      <Layout>
+        <AdminListUsers />
       </Layout>
     ),
   },

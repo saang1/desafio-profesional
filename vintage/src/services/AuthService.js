@@ -4,7 +4,8 @@ import axios from 'axios';
 
 
 const API_BASE_URL = 'http://localhost:8080/auth';
-const DETAILS_API_URL = 'http://localhost:8080/api';
+const USER_API_URL = 'http://localhost:8080/api';
+
 
 
 // Function to get the token from local storage
@@ -70,7 +71,7 @@ export const logout = () => {
 
 export const getUserDetails = async () => {
   try {
-    const response = await axiosInstance.get(`${DETAILS_API_URL}/user/details`);
+    const response = await axiosInstance.get(`${USER_API_URL}/user/details`);
     return response.data;
   } catch (error) {
     console.error('Error fetching user details:', error);
@@ -87,4 +88,23 @@ export const getUserFromLocalStorage = () => {
   return user ? JSON.parse(user) : null;
 };
 
+
+
+export const getUsers = async () => {
+  try {
+    const response = await axiosInstance.get(`${USER_API_URL}/user/list`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    throw error;
+  }
+};
+
+
+export const updateUserRole = async (id, role) => {
+  const response = await axiosInstance.put(`${USER_API_URL}/user/list/${id}/role`, null, {
+    params: { role },
+  });
+  return response.data;
+};
 
