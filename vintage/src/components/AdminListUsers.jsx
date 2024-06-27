@@ -31,45 +31,44 @@ const AdminListUsers = () => {
   };
 
   return (
-  <Container className="mt-5">
-    <h2>User List</h2>  
-    <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Username</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Email</th>
-          <th>Country</th>
-          <th>Role</th>
-        </tr>
-      </thead>
-      <tbody>
-        {users.map(user => (
-          <tr key={user.id}>
-            <td>{user.id}</td>
-            <td>{user.username}</td>
-            <td>{user.firstname}</td>
-            <td>{user.lastname}</td>
-            <td>{user.email}</td>
-            <td>{user.country}</td>
-            <td>
-              <Form.Control
-                as="select"
-                value={user.role}
-                onChange={(e) => handleRoleChange(user.id, e.target.value)}
-              >
-                <option value="USER">USER</option>
-                <option value="ADMIN">ADMIN</option>
-              </Form.Control>
-            </td>
+    <Container className="mt-5">
+      <h2>User List</h2>  
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Country</th>
+            <th>Role</th>
           </tr>
-        ))}
-      </tbody>
-    </Table>
-  </Container>
-
+        </thead>
+        <tbody>
+          {users.map(user => (
+            <tr key={user.id}>
+              <td>{user.id}</td>
+              <td>{user.username}</td>
+              <td>{user.firstname}</td>
+              <td>{user.lastname}</td>
+              <td>{user.email}</td>
+              <td>{user.country}</td>
+              <td>
+                <Form.Control
+                  as="select"
+                  value={user.role}
+                  onChange={(e) => handleRoleChange(user.id, e.target.value)}
+                >
+                  <option value="USER">USER</option>
+                  <option value="ADMIN">ADMIN</option>
+                </Form.Control>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+    </Container>
   );
 };
 

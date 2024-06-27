@@ -7,6 +7,11 @@ import { useNavigate } from 'react-router-dom';
 const AdministratorPage = () => {
   const navigate = useNavigate();
 
+
+  const handleUserList = () => {
+    navigate('/users');
+  };
+
   return (
     <>
       <div className="admin-content">
@@ -23,8 +28,8 @@ const AdministratorPage = () => {
               </Button>
             </Col>
             <Col className="d-flex justify-content-center">
-              <Button className="big-button" variant="secondary">
-                Button 2
+              <Button className="big-button" variant="primary" onClick={handleUserList}>
+                List Users
               </Button>
             </Col>
           </Row>

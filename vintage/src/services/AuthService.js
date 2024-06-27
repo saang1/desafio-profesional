@@ -102,9 +102,12 @@ export const getUsers = async () => {
 
 
 export const updateUserRole = async (id, role) => {
-  const response = await axiosInstance.put(`${USER_API_URL}/user/list/${id}/role`, null, {
-    params: { role },
-  });
-  return response.data;
+  try {
+    const response = await axiosInstance.put(`${USER_API_URL}/user/${id}/role`, { role });
+    return response.data;
+  } catch (error) {
+    console.error('Error updating role:', error);
+    throw error;
+  }
 };
 

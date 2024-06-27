@@ -35,8 +35,20 @@ public class UserController {
     }
 
     @PutMapping("/{id}/role")
-    public ResponseEntity<User> updateUserRole(@PathVariable Integer id, @RequestBody String role) {
-        User updatedUser = userService.updateUserRole(id, role);
+    public ResponseEntity<User> updateUserRole(@PathVariable Integer id, @RequestBody RoleUpdateRequest roleUpdateRequest) {
+        User updatedUser = userService.updateUserRole(id, roleUpdateRequest.getRole());
         return ResponseEntity.ok(updatedUser);
+    }
+}
+
+class RoleUpdateRequest {
+    private String role;
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

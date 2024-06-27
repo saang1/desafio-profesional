@@ -4,6 +4,7 @@ import com.vintage.ecommerce.jwt.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -28,6 +29,7 @@ public class SecurityConfig {
                                 authRequest
                                         .requestMatchers("/auth/**").permitAll()
                                         .requestMatchers("/api/products").permitAll()
+                                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // Allow preflight requests
                                         .requestMatchers("/api/user/list/").hasRole("ADMIN")
                                         .requestMatchers("/api/user/list/{id}/role").hasRole("ADMIN")
                                         .anyRequest().authenticated()
