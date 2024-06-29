@@ -29,7 +29,8 @@ public class SecurityConfig {
                                 authRequest
                                         .requestMatchers("/auth/**").permitAll()
                                         .requestMatchers("/api/products").permitAll()
-                                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // Allow preflight requests
+                                        .requestMatchers("/api/attributes/**").permitAll()
+                                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                                         .requestMatchers("/api/user/list/").hasRole("ADMIN")
                                         .requestMatchers("/api/user/list/{id}/role").hasRole("ADMIN")
                                         .anyRequest().authenticated()

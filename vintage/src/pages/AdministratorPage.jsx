@@ -12,6 +12,10 @@ const AdministratorPage = () => {
     navigate('/users');
   };
 
+  const handleManageAttributes = () => {
+    navigate('/admin/manage-attributes')
+  }
+
   return (
     <>
       <div className="admin-content">
@@ -30,6 +34,11 @@ const AdministratorPage = () => {
             <Col className="d-flex justify-content-center">
               <Button className="big-button" variant="primary" onClick={handleUserList}>
                 List Users
+              </Button>
+            </Col>
+            <Col className="d-flex justify-content-center">
+              <Button className="big-button" variant="primary" onClick={handleManageAttributes}>
+                Manage Attributes
               </Button>
             </Col>
           </Row>

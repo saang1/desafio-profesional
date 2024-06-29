@@ -18,6 +18,7 @@ import Register from './pages/RegisterPage';
 import Login from './pages/LoginPage';
 import ProfilePage from './pages/ProfilePage';
 import AdminListUsers from './components/AdminListUsers';
+import ManageAttributes from './pages/ManageAttributesPage';
 
 
 const router = createBrowserRouter([
@@ -110,6 +111,14 @@ const router = createBrowserRouter([
     element: (
       <Layout>
         <ProfilePage />
+      </Layout>
+    ),
+  },
+  {
+    path: '/admin/manage-attributes',
+    element: (
+      <Layout>
+        <ManageAttributes />
       </Layout>
     ),
   },
