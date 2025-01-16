@@ -29,10 +29,15 @@ public class SecurityConfig {
                                 authRequest
                                         .requestMatchers("/auth/**").permitAll()
                                         .requestMatchers("/api/products").permitAll()
-                                        .requestMatchers("/api/attributes/**").permitAll()
+                                        .requestMatchers("/api/attributes").permitAll()
+                                        .requestMatchers("/api/products/search").permitAll()
+                                        .requestMatchers("/api/products/suggestions").permitAll()
+                                        .requestMatchers("/api/reservation/**").permitAll()
+                                        .requestMatchers("/api/reservation/available/**").permitAll()
                                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                                         .requestMatchers("/api/user/list/").hasRole("ADMIN")
                                         .requestMatchers("/api/user/list/{id}/role").hasRole("ADMIN")
+
                                         .anyRequest().authenticated()
                                 )
                         .sessionManagement(sessionManager ->

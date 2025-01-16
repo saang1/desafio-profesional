@@ -3,6 +3,9 @@ package com.vintage.ecommerce.dto;
 
 import lombok.*;
 
+
+@Getter
+@Setter
 @Data
 @Builder
 @NoArgsConstructor
@@ -10,5 +13,8 @@ import lombok.*;
 public class AttributeDto {
     private Integer id;
     private String name;
-    private String icon;
+    private byte[] icon;
+
+
+
 }

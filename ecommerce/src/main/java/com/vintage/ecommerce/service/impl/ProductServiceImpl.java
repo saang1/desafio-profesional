@@ -11,10 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.vintage.ecommerce.mapper.ProductMapper.mapToProductDto;
@@ -49,7 +47,7 @@ public class ProductServiceImpl implements ProductService {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Product does not exists with given id: " + productId));
-        return mapToProductDto(product);
+        return ProductMapper.mapToProductDto(product);
     }
 
     @Override
@@ -97,5 +95,25 @@ public class ProductServiceImpl implements ProductService {
 
         return ProductMapper.mapToProductDto(updateProductObj);
     }
+
+
+    @Override
+    public List<ProductDto> searchProducts(String query) {
+        List<Product> products = productRepository.searchProductsByNameOrDescription(query);
+
+        return products.stream()
+                .map(ProductMapper::mapToProductDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<ProductDto> getSuggestions(String query) {
+        return productRepository.findByNameContainingIgnoreCase(query)
+                .stream()
+                .map(product -> new ProductDto(product.getId(), product.getName())) // Return id and name
+                .collect(Collectors.toList());
+    }
+
+
+
 
 }

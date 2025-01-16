@@ -4,23 +4,26 @@ import com.vintage.ecommerce.dto.AttributeDto;
 import com.vintage.ecommerce.entity.Attribute;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+
 
 @Component
 public class AttributeMapper {
 
     public AttributeDto toDTO(Attribute attribute) {
-        return AttributeDto.builder()
-                .id(attribute.getId())
-                .name(attribute.getName())
-                .icon(attribute.getIcon())
-                .build();
+        return new AttributeDto(
+                attribute.getId(),
+                attribute.getName(),
+                attribute.getIcon()
+        );
     }
 
-    public Attribute toEntity(AttributeDto attributeDto) {
-        return Attribute.builder()
-                .id(attributeDto.getId())
-                .name(attributeDto.getName())
-                .icon(attributeDto.getIcon())
-                .build();
+    public Attribute toEntity(AttributeDto attributeDto) throws IOException {
+        return new Attribute(
+                attributeDto.getId(),
+                attributeDto.getName(),
+                attributeDto.getIcon()
+        );
+
     }
 }

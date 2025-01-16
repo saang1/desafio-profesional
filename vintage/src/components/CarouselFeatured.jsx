@@ -10,7 +10,7 @@ import video_featured from '../components/assets/video-featured.jpg'
 
 const CarouselFeatured = () => {
   return (
-    <Carousel interval={4000}>
+    <Carousel interval={2500}>
       <Carousel.Item>
         <img
             className='d-block '

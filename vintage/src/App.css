@@ -64,6 +64,32 @@ html {
   color: #ffffff;
 }
 
+.suggestions-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 56%;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  z-index: 1000;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+
+
+.suggestion-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.suggestion-item:hover {
+  background-color: #f1f1f1;
+}
 
 
 .btn-logout {
@@ -138,6 +164,10 @@ html {
   border-radius: 5%;
 }
 
+.visually-hidden .carousel-item{
+  color: #000000;
+  background-color: #000000;
+}
 
 
 /* Categories */
@@ -385,6 +415,33 @@ html {
   padding: 30px; 
 }
 
+/* double calendar */
+
+/* Highlight available dates */
+.react-datepicker__day--available {
+  background-color: green;
+  color: white;
+  border-radius: 50%;
+}
+
+/* Highlight reserved dates */
+.react-datepicker__day--reserved {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+}
+
+/* Style adjustments for the date pickers */
+.react-datepicker {
+  font-size: 14px;
+}
+
+.react-datepicker__day--highlighted {
+  cursor: pointer;
+}
+
+
+
 
 
 
@@ -429,4 +486,37 @@ html {
   background-color: #495057; 
   color: white; 
 }
+
+/* Search results  */
+
+
+.search-results {
+  text-align: center;
+}
+
+.product-list-container {
+  display: flex;
+  flex-wrap: wrap;  /* Allow items to wrap to the next line */
+  justify-content: center;  /* Center the cards horizontally */
+  gap: 20px; /* Space between the items */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Optional: Add responsive behavior for smaller screens */
+@media (max-width: 768px) {
+  .product-list-item {
+    width: 100%;  /* Make cards full-width on smaller screens */
+  }
+}
+
 

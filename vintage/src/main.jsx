@@ -19,6 +19,7 @@ import Login from './pages/LoginPage';
 import ProfilePage from './pages/ProfilePage';
 import AdminListUsers from './components/AdminListUsers';
 import ManageAttributes from './pages/ManageAttributesPage';
+import SearchResults from './components/SearchResults';
 
 
 const router = createBrowserRouter([
@@ -119,6 +120,22 @@ const router = createBrowserRouter([
     element: (
       <Layout>
         <ManageAttributes />
+      </Layout>
+    ),
+  },
+  {
+    path: '/search',
+    element: (
+      <Layout>
+        <SearchResults />
+      </Layout>
+    ),
+  },
+  {
+    path: '/product/:id',
+    element: (
+      <Layout>
+        <ProductDetailPage />
       </Layout>
     ),
   },

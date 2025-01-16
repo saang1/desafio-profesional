@@ -26,11 +26,19 @@ public class Product {
     private String category;
     private BigDecimal price;
 
-
     @ElementCollection
     @CollectionTable(name = "product_images", joinColumns = @JoinColumn(name = "product_id"))
     @Lob
     @Column(columnDefinition = "LONGBLOB")
     private List<byte[]> images;
 
+    // Relación Many-to-Many con atributos
+    @ManyToMany
+    @JoinTable(
+            name = "product_attributes",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "attribute_id")
+    )
+    private List<Attribute> attributes;
 }
+

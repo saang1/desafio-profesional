@@ -2,6 +2,10 @@ import axios from "axios";
 
 const REST_API_BASE_URL = 'http://localhost:8080/api/products';
 
+const REST_API_RESERVATION_URL = "http://localhost:8080/api/reservation";
+
+
+
 export const ListProducts = () => axios.get(REST_API_BASE_URL);
 
 
@@ -33,3 +37,17 @@ export const deleteProduct = (productId) => axios.delete(REST_API_BASE_URL + '/'
 export const getProduct = (productId) => axios.get(REST_API_BASE_URL + '/' + productId);
 
 export const updateProduct = (productId, product) => axios.put(REST_API_BASE_URL + '/' + productId, product);
+
+
+// reeservations 
+
+
+export const getAvailableDates = async (productId) => {
+  try {
+    const response = await axios.get(`${REST_API_RESERVATION_URL}/available/${productId}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching available dates:", error);
+    throw error;
+  }
+};

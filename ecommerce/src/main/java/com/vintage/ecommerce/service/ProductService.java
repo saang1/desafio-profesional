@@ -1,6 +1,7 @@
 package com.vintage.ecommerce.service;
 
 import com.vintage.ecommerce.dto.ProductDto;
+import com.vintage.ecommerce.dto.ReservationDto;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -17,5 +18,9 @@ public interface ProductService {
     void deleteProduct(Long productId);
 
     ProductDto updateProduct(Long productId, ProductDto updatedProducts, MultipartFile[] images) throws IOException ;
+
+    List<ProductDto> searchProducts(String query);
+
+    List<ProductDto> getSuggestions(String query);
 
 }
