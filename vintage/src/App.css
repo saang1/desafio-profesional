@@ -417,30 +417,17 @@ html {
 
 /* double calendar */
 
-/* Highlight available dates */
-.react-datepicker__day--available {
-  background-color: green;
-  color: white;
+.react-datepicker__day.reserved {
+  background-color: red !important;
+  color: white !important;
   border-radius: 50%;
 }
 
-/* Highlight reserved dates */
-.react-datepicker__day--reserved {
-  background-color: red;
-  color: white;
+.react-datepicker__day.available {
+  background-color: green !important;
+  color: white !important;
   border-radius: 50%;
 }
-
-/* Style adjustments for the date pickers */
-.react-datepicker {
-  font-size: 14px;
-}
-
-.react-datepicker__day--highlighted {
-  cursor: pointer;
-}
-
-
 
 
 

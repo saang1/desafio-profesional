@@ -1,7 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getProductById, getAvailableDates } from "../services/ProductService";
+import {
+  getProductById,
+  getAvailableDates,
+  createReservation,
+} from "../services/ProductService";
 import {
   Container,
   Row,
@@ -17,8 +21,12 @@ import {
 import { ArrowLeft } from "react-bootstrap-icons";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { isLoggedIn } from "../services/AuthService";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "../App.css";
 
-const ProductDetail = () => {
+const ProductDetailPage = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [availableDates, setAvailableDates] = useState([]);
@@ -31,6 +39,14 @@ const ProductDetail = () => {
   const [endDate, setEndDate] = useState(null);
   const navigate = useNavigate();
 
+  const today = new Date(); // Today's date to restrict past selections
+
+  const normalizeDate = (dateStr) => {
+    const date = new Date(dateStr);
+    return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+  };
+
+
   useEffect(() => {
     const fetchProductDetails = async () => {
       try {
@@ -41,8 +57,53 @@ const ProductDetail = () => {
         setProduct(fetchedProduct);
 
         const fetchedDates = await getAvailableDates(id);
-        setAvailableDates(fetchedDates.filter(date => date.status === 'available').map(date => new Date(date.date)));
-        setReservedDates(fetchedDates.filter(date => date.status === 'reserved').map(date => new Date(date.date)));
+        console.log("Fetched Dates from API:", fetchedDates);
+
+setAvailableDates(
+  fetchedDates
+    .filter((date) => {
+      const startDate = new Date(date.startDate);
+      const endDate = new Date(date.endDate);
+      // Exclude invalid ranges where startDate > endDate
+      if (startDate > endDate) {
+        console.warn("Invalid date range:", date);
+        return false;
+      }
+      return true;
+    })
+    .flatMap((date) => {
+      const startDate = normalizeDate(date.startDate);
+      const endDate = normalizeDate(date.endDate);
+      const dates = [];
+      for (let d = startDate; d <= endDate; d.setDate(d.getDate() + 1)) {
+        dates.push(new Date(d)); // Clone the date
+      }
+      return dates;
+    })
+);
+
+setReservedDates(
+  fetchedDates
+    .filter((date) => {
+      const startDate = new Date(date.startDate);
+      const endDate = new Date(date.endDate);
+      // Exclude invalid ranges where startDate > endDate
+      if (startDate > endDate) {
+        console.warn("Invalid date range:", date);
+        return false;
+      }
+      return true;
+    })
+    .flatMap((date) => {
+      const startDate = normalizeDate(date.startDate);
+      const endDate = normalizeDate(date.endDate);
+      const dates = [];
+      for (let d = startDate; d <= endDate; d.setDate(d.getDate() + 1)) {
+        dates.push(new Date(d)); // Clone the date
+      }
+      return dates;
+    })
+);
 
         setLoading(false);
         if (fetchedProduct?.images?.length > 0) {
@@ -72,14 +133,86 @@ const ProductDetail = () => {
   };
 
   const handleDateClassName = (date) => {
-    // Check if the date is in available or reserved dates
-    if (availableDates.some(d => d.toDateString() === date.toDateString())) {
-      return "available"; // For available dates
+    const normalizedDate = normalizeDate(date);
+
+    // Check if the date is reserved
+    if (
+      reservedDates.some(
+        (d) => normalizeDate(d).getTime() === normalizedDate.getTime()
+      )
+    ) {
+      console.log("Reserved date detected:", normalizedDate.toISOString());
+      return "reserved";
     }
-    if (reservedDates.some(d => d.toDateString() === date.toDateString())) {
-      return "reserved"; // For reserved dates
+
+    // Check if the date is available
+    if (
+      availableDates.some(
+        (d) => normalizeDate(d).getTime() === normalizedDate.getTime()
+      )
+    ) {
+      console.log("Available date detected:", normalizedDate.toISOString());
+      return "available";
     }
-    return ""; // Default class for non-highlighted dates
+
+    console.log(
+      "No special class for this date:",
+      normalizedDate.toISOString()
+    );
+    console.log("Date being checked:", date.toISOString());
+    console.log("Reserved dates:", reservedDates);
+    console.log("Available dates:", availableDates);
+
+    return "";
+  };
+
+  const handleReservation = async () => {
+    if (!isLoggedIn()) {
+      toast.error("You must be logged in to make a reservation.");
+      return;
+    }
+
+    if (!startDate || !endDate) {
+      toast.warn(
+        "Please select both start and end dates for your reservation."
+      );
+      return;
+    }
+
+    // Ensure the selected dates are not in the past
+    if (startDate < today || endDate < today) {
+      toast.error("You cannot reserve dates in the past.");
+      return;
+    }
+
+    try {
+      const reservationData = {
+        productId: id,
+        startDate: startDate.toISOString().split("T")[0],
+        endDate: endDate.toISOString().split("T")[0],
+      };
+
+      await createReservation(reservationData);
+      toast.success("Reservation successful!");
+
+      // Refresh dates after successful reservation
+      const fetchedDates = await getAvailableDates(id);
+      setAvailableDates(
+        fetchedDates
+          .filter((date) => date.status === "available")
+          .map((date) => new Date(date.date))
+      );
+      setReservedDates(
+        fetchedDates
+          .filter((date) => date.status === "reserved")
+          .map((date) => new Date(date.date))
+      );
+    } catch (error) {
+      console.error("Error creating reservation:", error);
+      toast.error(
+        "This product is already reserved. Please try again with a different date."
+      );
+    }
   };
 
   if (loading) {
@@ -167,17 +300,13 @@ const ProductDetail = () => {
             <Button
               variant="danger"
               className="btn-cart"
-              onClick={() =>
-                alert(
-                  `Reserved from ${startDate?.toLocaleDateString()} to ${endDate?.toLocaleDateString()}`
-                )
-              }
+              onClick={handleReservation}
             >
               Reserve Now
             </Button>
             <Row>
               <Col className="mt-5">
-                <Form.Group className="d-flex justify-content-evenly ">
+                <Form.Group className="d-flex justify-content-evenly">
                   <div>
                     <h6>Start Date</h6>
                     <DatePicker
@@ -186,7 +315,11 @@ const ProductDetail = () => {
                       selectsStart
                       startDate={startDate}
                       endDate={endDate}
-                      dayClassName={handleDateClassName} // Apply custom classes
+                      minDate={today}
+                      highlightDates={[
+                        { dates: availableDates, className: "available" },
+                        { dates: reservedDates, className: "reserved" },
+                      ]}
                       inline
                     />
                   </div>
@@ -198,7 +331,8 @@ const ProductDetail = () => {
                       selectsEnd
                       startDate={startDate}
                       endDate={endDate}
-                      dayClassName={handleDateClassName} // Apply custom classes
+                      minDate={startDate || today} // End date can't be earlier than start date
+                      dayClassName={handleDateClassName}
                       inline
                     />
                   </div>
@@ -233,8 +367,9 @@ const ProductDetail = () => {
           </Carousel>
         </Modal.Body>
       </Modal>
+      <ToastContainer />
     </Container>
   );
 };
 
-export default ProductDetail;
+export default ProductDetailPage;
