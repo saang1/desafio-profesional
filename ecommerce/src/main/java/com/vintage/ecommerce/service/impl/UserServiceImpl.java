@@ -5,6 +5,7 @@ import com.vintage.ecommerce.user.User;
 import com.vintage.ecommerce.user.UserRepository;
 import com.vintage.ecommerce.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +34,11 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
         user.setRole(Role.valueOf(role)); // Convert String to Role
         return userRepository.save(user);
+    }
+
+    public User getAuthenticatedUser(Authentication auth) {
+        return userRepository.findByUsername(auth.getName())
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
 

@@ -20,6 +20,7 @@ import ProfilePage from './pages/ProfilePage';
 import AdminListUsers from './components/AdminListUsers';
 import ManageAttributes from './pages/ManageAttributesPage';
 import SearchResults from './components/SearchResults';
+import FavoritesPage from './pages/FavoritesPage';
 
 
 const router = createBrowserRouter([
@@ -136,6 +137,14 @@ const router = createBrowserRouter([
     element: (
       <Layout>
         <ProductDetailPage />
+      </Layout>
+    ),
+  },
+  {
+    path: '/favorites/',
+    element: (
+      <Layout>
+        <FavoritesPage />
       </Layout>
     ),
   },

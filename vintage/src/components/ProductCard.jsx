@@ -1,15 +1,23 @@
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line no-unused-vars
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, Button, ButtonGroup } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import FavoriteToggle from './FavorteToggle';
+
+
+
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
 
+
   const handleDetailsClick = () => {
     navigate(`/products/${product.id}`);
   };
+
+
+
 
   return (
     <Card className="mb-4 mx-2 mt-4 border-0" key={product.id}>
@@ -34,7 +42,10 @@ const ProductCard = ({ product }) => {
         </Card.Text>
       </Card.Body>
       <ButtonGroup size="lg" className='button-group'>
-        <Button variant="danger">ADD TO CART</Button>
+
+
+        <FavoriteToggle productId={product.id} />
+
         <Button variant="danger" onClick={handleDetailsClick}>DETAILS</Button>
       </ButtonGroup>
     </Card>

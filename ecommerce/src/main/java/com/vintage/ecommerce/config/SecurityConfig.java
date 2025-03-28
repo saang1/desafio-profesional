@@ -1,6 +1,7 @@
 package com.vintage.ecommerce.config;
 
 import com.vintage.ecommerce.jwt.JwtAuthenticationFilter;
+import com.vintage.ecommerce.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,6 +35,7 @@ public class SecurityConfig {
                                         .requestMatchers("/api/products/suggestions").permitAll()
                                         .requestMatchers("/api/reservation/**").permitAll()
                                         .requestMatchers("/api/reservation/available/**").permitAll()
+                                        .requestMatchers("/api/favorites/**").permitAll()
                                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                                         .requestMatchers("/api/user/list/").hasRole("ADMIN")
                                         .requestMatchers("/api/user/list/{id}/role").hasRole("ADMIN")

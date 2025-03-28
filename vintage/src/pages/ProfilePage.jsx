@@ -1,4 +1,5 @@
-// eslint-disable-next-line no-unused-vars
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { getUserDetails } from '../services/AuthService';
 import { Button, Container, Card } from 'react-bootstrap';
@@ -16,44 +17,63 @@ const ProfilePage = () => {
     fetchUserDetails();
   }, []);
 
-  const handleAdminPageClick = () => {
-    navigate('/administrator');
+  const handleFavoritesClick = () => {
+    navigate('/favorites');
   };
 
-  const handleExploreClick = () => {
-    navigate('/');
-  };
-
-  const handleLoginClick = () => {
-    navigate('/login');
-  };
-
-  const handleRegisterClick = () => {
-    navigate('/register');
-  };
+  const handleAdminPageClick = () => navigate('/administrator');
+  const handleExploreClick = () => navigate('/');
+  const handleLoginClick = () => navigate('/login');
+  const handleRegisterClick = () => navigate('/register');
 
   const capitalizeFirstLetter = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+    return string?.charAt(0)?.toUpperCase() + string?.slice(1)?.toLowerCase();
   };
 
   return (
     <Container className='d-flex vh-100 justify-content-center align-items-center'>
-      <Card style={{ width: '35rem', height: '20rem' }}>
+      <Card style={{ width: '35rem', height: '28rem' }}> 
         <Card.Body>
           {userDetails ? (
             <>
-              <Card.Title className='mt-2'>{`${capitalizeFirstLetter(userDetails.firstname)} ${capitalizeFirstLetter(userDetails.lastname)}`}</Card.Title>
+              <Card.Title className='mt-2'>
+                {`${capitalizeFirstLetter(userDetails.firstname)} ${capitalizeFirstLetter(userDetails.lastname)}`}
+              </Card.Title>
               <Card.Text><strong>Username:</strong> {userDetails.username}</Card.Text>
               <Card.Text><strong>Role:</strong> {userDetails.role}</Card.Text>
               <Card.Text><strong>Country:</strong> {userDetails.country}</Card.Text>
+              
+              {/* Favorites Button - Visible to both ADMIN and USER */}
+              {(userDetails.role === 'ADMIN' || userDetails.role === 'USER') && (
+                <Button 
+                  variant="secondary" 
+                  className='mt-3 me-2'
+                  onClick={handleFavoritesClick}
+                >
+                  View Favorites
+                </Button>
+                
+              )}
+
+              {/* Conditional Admin Button */}
               {userDetails.role === 'ADMIN' && (
-                <Button variant="primary" className='mt-5' onClick={handleAdminPageClick}>
-                  Go to Administrator Page
+                <Button 
+                  variant="secondary" 
+                  className='mt-3 me-2'
+                  onClick={handleAdminPageClick}
+                >
+                  Admin Dashboard
                 </Button>
               )}
-              {userDetails.role === 'USER' && (
-                <Button variant="primary" className='mt-5' onClick={handleExploreClick}>
-                  Explore more products!
+
+              {/* Explore Button for regular users */}
+              {(userDetails.role === 'ADMIN' || userDetails.role === 'USER') && (
+                <Button 
+                  variant="secondary" 
+                  className='mt-3'
+                  onClick={handleExploreClick}
+                >
+                  Explore Products
                 </Button>
               )}
             </>
@@ -63,10 +83,15 @@ const ProfilePage = () => {
                 <strong>Oops! It seems like you aren't logged in.</strong>
               </Card.Text>
               <Card.Text className='mt-5'>
-                <a href="#" onClick={handleLoginClick}>Click here to log in</a> or <a href="#" onClick={handleRegisterClick}>register</a>.
+                <a href="#" onClick={handleLoginClick}>Log in</a> or {' '}
+                <a href="#" onClick={handleRegisterClick}>register</a>
               </Card.Text>
-              <Button variant="primary" className='mt-5' onClick={handleExploreClick}>
-                Explore more products!
+              <Button 
+                variant="primary" 
+                className='mt-3'
+                onClick={handleExploreClick}
+              >
+                Explore Products
               </Button>
             </>
           )}

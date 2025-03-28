@@ -57,7 +57,6 @@ const ProductDetailPage = () => {
         setProduct(fetchedProduct);
 
         const fetchedDates = await getAvailableDates(id);
-        console.log("Fetched Dates from API:", fetchedDates);
 
 setAvailableDates(
   fetchedDates
@@ -141,7 +140,6 @@ setReservedDates(
         (d) => normalizeDate(d).getTime() === normalizedDate.getTime()
       )
     ) {
-      console.log("Reserved date detected:", normalizedDate.toISOString());
       return "reserved";
     }
 
@@ -151,17 +149,11 @@ setReservedDates(
         (d) => normalizeDate(d).getTime() === normalizedDate.getTime()
       )
     ) {
-      console.log("Available date detected:", normalizedDate.toISOString());
       return "available";
     }
 
-    console.log(
-      "No special class for this date:",
-      normalizedDate.toISOString()
-    );
-    console.log("Date being checked:", date.toISOString());
-    console.log("Reserved dates:", reservedDates);
-    console.log("Available dates:", availableDates);
+
+
 
     return "";
   };

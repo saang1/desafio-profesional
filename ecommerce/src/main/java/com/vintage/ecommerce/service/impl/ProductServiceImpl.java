@@ -6,6 +6,7 @@ import com.vintage.ecommerce.exception.ResourceNotFoundException;
 import com.vintage.ecommerce.mapper.ProductMapper;
 import com.vintage.ecommerce.repository.ProductRepository;
 import com.vintage.ecommerce.service.ProductService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -48,6 +49,12 @@ public class ProductServiceImpl implements ProductService {
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Product does not exists with given id: " + productId));
         return ProductMapper.mapToProductDto(product);
+    }
+
+    @Override
+    public Product getProductEntityById(Long productId) {
+        return productRepository.findById(productId)
+                .orElseThrow(() -> new EntityNotFoundException("Product not found"));
     }
 
     @Override

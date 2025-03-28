@@ -1,12 +1,11 @@
 package com.vintage.ecommerce.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -32,7 +31,6 @@ public class Product {
     @Column(columnDefinition = "LONGBLOB")
     private List<byte[]> images;
 
-    // Relación Many-to-Many con atributos
     @ManyToMany
     @JoinTable(
             name = "product_attributes",
@@ -40,5 +38,17 @@ public class Product {
             inverseJoinColumns = @JoinColumn(name = "attribute_id")
     )
     private List<Attribute> attributes;
+
+    @OneToMany(
+            mappedBy = "product",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JsonIgnore
+    private List<UserFavorites> favoritedBy = new ArrayList<>();
+
+    public <R> Product(Long id, String name, String description, String category, BigDecimal price, List<byte[]> images, R collect) {
+
+    }
 }
 
